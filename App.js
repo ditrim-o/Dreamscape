@@ -38,7 +38,6 @@ const navTheme = {
 };
 
 
-
 const MainMenu = createMaterialTopTabNavigator();
 
 
