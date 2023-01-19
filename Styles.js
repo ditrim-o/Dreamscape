@@ -461,7 +461,7 @@ export default StyleSheet.create({
         fontSize: 18,
         textAlignVertical: 'center',
         textAlign: 'justify',
-        marginLeft:5,
+        marginLeft: 5,
     },
 
     tagimage: {
@@ -813,7 +813,7 @@ export default StyleSheet.create({
         fontFamily: 'OpenSansLight',
         fontSize: 14,
         color: 'rgba(200,200,200,0.85)',
-        marginTop:5,
+        marginTop: 5,
     },
 
 
