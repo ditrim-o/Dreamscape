@@ -20,7 +20,6 @@ const DreamList = () => {
                     cursorColor={'white'}
                 />
             </View>
-
             <ScrollView style={styles.body_list_content} fadingEdgeLength={50}>
                 <DreamListItem />
                 <DreamListItem />

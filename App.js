@@ -1,13 +1,14 @@
 import { StyleSheet, Text, ScrollView, View, Dimensions, Button, Image, ImageBackground, StatusBar, TouchableHighlight, Animated, TouchableOpacity } from 'react-native';
 import { Shadow } from 'react-native-shadow-2';
 import { LinearGradient } from 'expo-linear-gradient';
-import React, { useState } from 'react';
-import { Asset } from 'expo-asset';
-import { DefaultTheme, NavigationContainer, StackActions } from '@react-navigation/native';
+import React from 'react';
+import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { useCallback } from 'react';
+import { store } from './src/store/reducers/reducer';
+import { Provider } from 'react-redux';
 
 
 import HeaderArt from './assets/images/header_art.svg';
@@ -19,9 +20,6 @@ import ScreenCompendium from './App_ScreenCompendium';
 import ScreenDS from './App_ScreenDS';
 import ScreenCommunity from './App_ScreenCommunity';
 import ScreenSettings from './App_ScreenSettings';
-
-import { NativeModules } from 'react-native';
-NativeModules.DevSettings.setIsDebuggingRemotely(false);
 
 import styles from './Styles'
 import TabBar from './src/containers/TabBar/TabBar';
@@ -66,30 +64,32 @@ function App({ }) {
 
   return (
 
-    <View style={styles.background} onLayout={onLayoutRootView} >
-      <NavigationContainer theme={navTheme}>
-        <StatusBar style={'auto'}></StatusBar>
+    <Provider store={store}>
+      <View style={styles.background} onLayout={onLayoutRootView} >
+        <NavigationContainer theme={navTheme}>
+          <StatusBar style={'auto'}></StatusBar>
 
-        {/*<<LinearGradient colors={['rgba(27,25,25,1)', 'rgba(66,66,66,1)']} style={styles.background} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} />
+          {/*<<LinearGradient colors={['rgba(27,25,25,1)', 'rgba(66,66,66,1)']} style={styles.background} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} />
         ImageBackground source={{ uri: Asset.fromModule(require("./assets/images/bg_test5.png")).uri, }} style={styles.bgimage} />*/}
 
-        <View style={styles.HeaderFull}>
-          <LinearGradient colors={['rgba(246,246,246,0.25)', 'rgba(116,116,116,0.25)']} style={styles.HeaderBack} start={{ x: 0, y: 1 }} end={{ x: 0, y: 0 }} />
-          <HeaderArt style={styles.HeaderArt} />
-          <HeaderLogo style={styles.HeaderLogo} />
-        </View>
+          <View style={styles.HeaderFull}>
+            <LinearGradient colors={['rgba(246,246,246,0.25)', 'rgba(116,116,116,0.25)']} style={styles.HeaderBack} start={{ x: 0, y: 1 }} end={{ x: 0, y: 0 }} />
+            <HeaderArt style={styles.HeaderArt} />
+            <HeaderLogo style={styles.HeaderLogo} />
+          </View>
 
-        <Shadow><View style={{ position: 'absolute', height: 51 }}></View></Shadow>
+          <Shadow><View style={{ position: 'absolute', height: 51 }}></View></Shadow>
 
-        <MainMenu.Navigator backBehavior={'none'} tabBar={props => <TabBar {...props} />}>
-          <MainMenu.Screen name="Main" component={HomePage} options={{ animationEnabled: false, swipeEnabled: false, key: '1', presentation: 'containedtransparentModal' }} />
-          <MainMenu.Screen name="Screen2" component={ScreenCompendium} options={{ animationEnabled: false, swipeEnabled: false, key: '2', presentation: 'containedtransparentModal' }} />
-          <MainMenu.Screen name="Screen3" component={ScreenDS} options={{ animationEnabled: false, swipeEnabled: false, key: '3', presentation: 'containedtransparentModal' }} />
-          <MainMenu.Screen name="Screen4" component={ScreenCommunity} options={{ animationEnabled: false, swipeEnabled: false, key: '4', presentation: 'containedtransparentModal' }} />
-          <MainMenu.Screen name="Screen5" component={ScreenSettings} options={{ animationEnabled: false, swipeEnabled: false, key: '5', presentation: 'containedtransparentModal' }} />
-        </MainMenu.Navigator>
-      </NavigationContainer>
-    </View>
+          <MainMenu.Navigator backBehavior={'none'} tabBar={props => <TabBar {...props} />}>
+            <MainMenu.Screen name="Main" component={HomePage} options={{ animationEnabled: false, swipeEnabled: false, key: '1', presentation: 'containedtransparentModal' }} />
+            <MainMenu.Screen name="Screen2" component={ScreenCompendium} options={{ animationEnabled: false, swipeEnabled: false, key: '2', presentation: 'containedtransparentModal' }} />
+            <MainMenu.Screen name="Screen3" component={ScreenDS} options={{ animationEnabled: false, swipeEnabled: false, key: '3', presentation: 'containedtransparentModal' }} />
+            <MainMenu.Screen name="Screen4" component={ScreenCommunity} options={{ animationEnabled: false, swipeEnabled: false, key: '4', presentation: 'containedtransparentModal' }} />
+            <MainMenu.Screen name="Screen5" component={ScreenSettings} options={{ animationEnabled: false, swipeEnabled: false, key: '5', presentation: 'containedtransparentModal' }} />
+          </MainMenu.Navigator>
+        </NavigationContainer>
+      </View>
+    </Provider>
 
   );
 };

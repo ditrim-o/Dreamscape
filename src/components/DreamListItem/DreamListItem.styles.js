@@ -84,6 +84,11 @@ export default StyleSheet.create({
         borderColor: 'white',
         borderBottomWidth: 0.25,
     },
+    home_dreamlist_itemtype0: {
+        fontFamily: 'AlegreyaSansRegular',
+        fontSize: 14,
+        color: '#aeaeae',
+    },
 
 
 
