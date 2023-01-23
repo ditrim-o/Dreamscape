@@ -1,11 +1,11 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
 import dreamSlice from './dreamsSlice'
 import logger from 'redux-logger'
 
 export const store = configureStore({
     reducer: {
-        counter: dreamSlice,
+        dreams: dreamSlice,
     },
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false }).concat(logger),
     devTools: process.env.NODE_ENV !== 'production',
 })

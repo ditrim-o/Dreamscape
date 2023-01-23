@@ -3,9 +3,12 @@ import DreamListItem from "../../components/DreamListItem/DreamListItem"
 import styles from './DreamList.styles'
 import SeacrhBarSearch from './../../assets/images/icon_search.svg';
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { selectDreams } from "../../store/reducers/dreamsSlice";
 
-const DreamList = () => {
+const DreamList = ({ navigation }) => {
     const [SearchString, setSearchString] = useState('');
+    const dreams = useSelector(selectDreams)
     return (
         <View style={styles.body_list}>
 
@@ -21,8 +24,13 @@ const DreamList = () => {
                 />
             </View>
             <ScrollView style={styles.body_list_content} fadingEdgeLength={50}>
-                <DreamListItem />
-                <DreamListItem />
+                {dreams ? dreams.map(item => (
+                    <DreamListItem
+                        dream={item}
+                        key={item.id}
+                        navigation={navigation}
+                    />
+                )) : null}
             </ScrollView>
         </View>
     )

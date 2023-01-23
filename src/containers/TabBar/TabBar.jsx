@@ -30,6 +30,7 @@ function TabBar({ state, descriptors, navigation, position }) {
                         onPress={(e) => { onPress(route) }}
                         onLongPress={() => { onLongPress(route) }}
                         style={styles.MainMenuButtonLegit}
+                        key={index}
                     >
                         <TabBarBtn
                             isFocused={isFocused}
