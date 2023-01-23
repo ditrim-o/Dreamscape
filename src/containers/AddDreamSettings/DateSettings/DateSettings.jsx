@@ -46,7 +46,7 @@ const DateSettings = () => {
                     <Text style={styles.home_list_desc}>Date dream</Text>
                 </View>
                 <View style={dateSettingsStyles.DateSettings__container}>
-                    {!isDateUnknown ? <DateTimePicker
+                    {/* {!isDateUnknown ? <DateTimePicker
                         testID="dateTimePicker"
                         value={date}
                         mode={"date"}
@@ -54,7 +54,7 @@ const DateSettings = () => {
                         onChange={changeDate}
                         themeVariant={"dark"}
                         positiveButton={{ label: 'OK', textColor: 'green' }}
-                    /> : null}
+                    /> : null} */}
 
                     <View style={dateSettingsStyles.checkbox_container}>
                         <Checkbox
