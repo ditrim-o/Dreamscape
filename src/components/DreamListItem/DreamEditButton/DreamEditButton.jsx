@@ -9,7 +9,7 @@ const DreamEditButton = ({ dream, navigation }) => {
 
     const editHandler = () => {
         dispatch(setCurrentDream({ ...dream }))
-        navigation.navigate('AddDream')
+        navigation.navigate('AddDreamMenu', { screen: "AddDream" })
     }
 
     return (
