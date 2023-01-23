@@ -14,7 +14,7 @@ const HomeSidebar = ({ navigation }) => {
     const dispatch = useDispatch()
     const addDreamHandler = () => {
         dispatch(resetCurrent())
-        navigation.navigate('AddDream')
+        navigation.navigate('AddDreamMenu', { screen: "AddDream" })
     }
     return (
         <View style={styles.home_buttons}>
