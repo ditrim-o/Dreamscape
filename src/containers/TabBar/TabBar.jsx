@@ -6,7 +6,7 @@ import TabBarBtn from '../../components/TabBarBtn/TabBarBtn';
 function TabBar({ state, descriptors, navigation, position }) {
     const onPress = (route) => {
         navigation.navigate(route.name, { screen: "Home" });
-        route.name === "Main" ? navigation.navigate(route.name, { screen: "DreamList" }) : navigation.navigate(route.name)
+        route.name === "Main" ? navigation.navigate(route.name, { screen: "DreamList" }) : navigation.navigate("AddDreamMenu")
     }
 
     const onLongPress = (route) => {

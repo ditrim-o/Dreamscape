@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Text, View, TouchableOpacity } from "react-native"
+import { Text, View, TouchableOpacity, Platform } from "react-native"
 import styles from "./../AddDreamSettings.styles"
 import dateSettingsStyles from './DateSettings.styles'
 import DateTimePicker from '@react-native-community/datetimepicker';
@@ -7,10 +7,13 @@ import Checkbox from "expo-checkbox";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentDream, setAddedDate, setDreamDate } from "../../../store/reducers/dreamsSlice";
 import { useEffect } from "react";
+import DatePickerAndroid from 'react-native-date-picker'
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 const DateSettings = () => {
     const [date, setDate] = useState(new Date())
     const [isDateUnknown, setIsDateUnknown] = useState(false)
+    const [open, setOpen] = useState(false)
 
     const currentDream = useSelector(selectCurrentDream)
     const dispatch = useDispatch();
@@ -39,6 +42,45 @@ const DateSettings = () => {
         setIsDateUnknown(!isDateUnknown)
     }
 
+    const renderIOS = () => {
+        if (!isDateUnknown) {
+            return <DateTimePicker
+                testID="dateTimePicker"
+                value={date}
+                mode={"date"}
+                is24Hour={true}
+                onChange={changeDate}
+                themeVariant={"dark"}
+                positiveButton={{ label: 'OK', textColor: 'green' }}
+            />
+        } else {
+            return null
+        }
+    }
+
+    const renderAndroid = () => {
+        return (<>
+            <DatePickerAndroid date={date} onDateChange={setDate} />
+            {/* <TouchableOpacity
+                onPress={() => { setOpen(true) }}
+            >
+                <FontAwesome name="calendar" />
+            </TouchableOpacity>
+            <DatePickerAndroid
+                modal
+                open={open}
+                date={date}
+                onConfirm={(date) => {
+                    setOpen(false)
+                    setDate(date)
+                }}
+                onCancel={() => {
+                    setOpen(false)
+                }}
+            /> */}
+        </>)
+    }
+
     return (
         <>
             <View style={styles.adddream_option}>
@@ -46,15 +88,9 @@ const DateSettings = () => {
                     <Text style={styles.home_list_desc}>Date dream</Text>
                 </View>
                 <View style={dateSettingsStyles.DateSettings__container}>
-                    {/* {!isDateUnknown ? <DateTimePicker
-                        testID="dateTimePicker"
-                        value={date}
-                        mode={"date"}
-                        is24Hour={true}
-                        onChange={changeDate}
-                        themeVariant={"dark"}
-                        positiveButton={{ label: 'OK', textColor: 'green' }}
-                    /> : null} */}
+                    {Platform.OS == 'ios' ? renderAndroid() : renderAndroid()}
+
+
 
                     <View style={dateSettingsStyles.checkbox_container}>
                         <Checkbox

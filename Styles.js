@@ -783,7 +783,7 @@ export default StyleSheet.create({
         fontSize: 16,
         color: 'white',
         alignSelf: 'center',
-        capitalize: 'true',
+        //capitalize: 'true',
         marginTop: -wwidth * 0.0125,
     },
 

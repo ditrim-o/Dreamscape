@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { StyleSheet, Text, ScrollView, View, Dimensions, Button, Image, ImageBackground, StatusBar, TouchableHighlight, Animated, TouchableOpacity } from 'react-native';
 import { Shadow } from 'react-native-shadow-2';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -67,7 +68,7 @@ function App({ }) {
     <Provider store={store}>
       <View style={styles.background} onLayout={onLayoutRootView} >
         <NavigationContainer theme={navTheme}>
-          <StatusBar style={'auto'}></StatusBar>
+          <StatusBar ></StatusBar>
 
           {/*<<LinearGradient colors={['rgba(27,25,25,1)', 'rgba(66,66,66,1)']} style={styles.background} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} />
         ImageBackground source={{ uri: Asset.fromModule(require("./assets/images/bg_test5.png")).uri, }} style={styles.bgimage} />*/}
@@ -81,11 +82,11 @@ function App({ }) {
           <Shadow><View style={{ position: 'absolute', height: 51 }}></View></Shadow>
 
           <MainMenu.Navigator backBehavior={'none'} tabBar={props => <TabBar {...props} />}>
-            <MainMenu.Screen name="Main" component={HomePage} options={{ animationEnabled: false, swipeEnabled: false, key: '1', presentation: 'containedtransparentModal' }} />
-            <MainMenu.Screen name="Screen2" component={ScreenCompendium} options={{ animationEnabled: false, swipeEnabled: false, key: '2', presentation: 'containedtransparentModal' }} />
-            <MainMenu.Screen name="Screen3" component={ScreenDS} options={{ animationEnabled: false, swipeEnabled: false, key: '3', presentation: 'containedtransparentModal' }} />
-            <MainMenu.Screen name="Screen4" component={ScreenCommunity} options={{ animationEnabled: false, swipeEnabled: false, key: '4', presentation: 'containedtransparentModal' }} />
-            <MainMenu.Screen name="Screen5" component={ScreenSettings} options={{ animationEnabled: false, swipeEnabled: false, key: '5', presentation: 'containedtransparentModal' }} />
+            <MainMenu.Screen name="Main" component={HomePage} options={{ animationEnabled: false, swipeEnabled: false, }} />
+            <MainMenu.Screen name="Screen2" component={ScreenCompendium} options={{ animationEnabled: false, swipeEnabled: false }} />
+            <MainMenu.Screen name="Screen3" component={ScreenDS} options={{ animationEnabled: false, swipeEnabled: false }} />
+            <MainMenu.Screen name="Screen4" component={ScreenCommunity} options={{ animationEnabled: false, swipeEnabled: false }} />
+            <MainMenu.Screen name="Screen5" component={ScreenSettings} options={{ animationEnabled: false, swipeEnabled: false }} />
           </MainMenu.Navigator>
         </NavigationContainer>
       </View>
