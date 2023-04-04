@@ -26,7 +26,8 @@ const HomePage = ({ navigation }) => {
             initialRouteName="DreamList"
             screenOptions={{
                 drawerStyle: { width: wwidth * 0.25, },
-                headerShown: false
+                headerShown: false,
+                gestureEnabled: false
             }}
             drawerContent={props => <HomeSidebar {...props} />}>
             <Drawer.Screen name="DreamList" component={DreamList} />

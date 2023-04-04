@@ -56,7 +56,7 @@ target 'DreamScape' do
     inherit! :complete
     # Pods for testing
   end
-
+  use_flipper!({'Flipper' => '0.125.0'})
   post_install do |installer|
     react_native_post_install(
       installer,

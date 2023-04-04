@@ -2,12 +2,12 @@ import { useState } from "react";
 import { Text, View, TouchableOpacity, Platform } from "react-native"
 import styles from "./../AddDreamSettings.styles"
 import dateSettingsStyles from './DateSettings.styles'
-import DateTimePicker from '@react-native-community/datetimepicker';
+// import DateTimePicker from '@react-native-community/datetimepicker';
 import Checkbox from "expo-checkbox";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentDream, setAddedDate, setDreamDate } from "../../../store/reducers/dreamsSlice";
 import { useEffect } from "react";
-import DatePickerAndroid from 'react-native-date-picker'
+import DatePicker from 'react-native-date-picker'
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 const DateSettings = () => {
@@ -34,51 +34,18 @@ const DateSettings = () => {
 
     }, [date, isDateUnknown])
 
-
-    const changeDate = (e, date) => {
-        setDate(new Date(date))
-    }
     const dateUnknownHandler = (e) => {
         setIsDateUnknown(!isDateUnknown)
     }
 
-    const renderIOS = () => {
-        if (!isDateUnknown) {
-            return <DateTimePicker
-                testID="dateTimePicker"
-                value={date}
-                mode={"date"}
-                is24Hour={true}
-                onChange={changeDate}
-                themeVariant={"dark"}
-                positiveButton={{ label: 'OK', textColor: 'green' }}
-            />
+    const calcDate = () => {
+        const date = currentDream.date;
+        if (date && date != "unknown") {
+            const dateObj = new Date(date)
+            return `${dateObj.getMonth() + 1}-${dateObj.getDate()}-${dateObj.getFullYear()}`
         } else {
-            return null
+            return date
         }
-    }
-
-    const renderAndroid = () => {
-        return (<>
-            <DatePickerAndroid date={date} onDateChange={setDate} />
-            {/* <TouchableOpacity
-                onPress={() => { setOpen(true) }}
-            >
-                <FontAwesome name="calendar" />
-            </TouchableOpacity>
-            <DatePickerAndroid
-                modal
-                open={open}
-                date={date}
-                onConfirm={(date) => {
-                    setOpen(false)
-                    setDate(date)
-                }}
-                onCancel={() => {
-                    setOpen(false)
-                }}
-            /> */}
-        </>)
     }
 
     return (
@@ -88,10 +55,23 @@ const DateSettings = () => {
                     <Text style={styles.home_list_desc}>Date dream</Text>
                 </View>
                 <View style={dateSettingsStyles.DateSettings__container}>
-                    {Platform.OS == 'ios' ? renderAndroid() : renderAndroid()}
-
-
-
+                    <TouchableOpacity
+                        onPress={() => { setOpen(true) }}
+                    >
+                        {currentDream.date && currentDream.date != "unknown" && <Text style={{ color: "white" }}>{calcDate()}</Text>}
+                    </TouchableOpacity>
+                    <DatePicker
+                        modal
+                        open={open}
+                        date={date}
+                        onConfirm={(date) => {
+                            setOpen(false)
+                            setDate(date)
+                        }}
+                        onCancel={() => {
+                            setOpen(false)
+                        }}
+                    />
                     <View style={dateSettingsStyles.checkbox_container}>
                         <Checkbox
                             value={isDateUnknown}

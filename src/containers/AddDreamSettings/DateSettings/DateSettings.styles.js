@@ -17,5 +17,9 @@ export default StyleSheet.create({
     checkbox_text: {
         color: "white",
         marginLeft: 5
+    },
+    date_value: {
+        color: "white",
+        marginLeft: 5
     }
 })
