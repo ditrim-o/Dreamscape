@@ -10,6 +10,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useCallback } from 'react';
 import { store } from './src/store/reducers/reducer';
 import { Provider } from 'react-redux';
+import LargeSidebar from './src/containers/LargeSidebar/LargeSidebar'
 
 
 import HeaderArt from './assets/images/header_art.svg';
@@ -25,6 +26,7 @@ import ScreenSettings from './App_ScreenSettings';
 import styles from './Styles'
 import TabBar from './src/containers/TabBar/TabBar';
 import HomePage from './src/containers/HomePage/HomePage';
+import HomeSidebar from './src/components/HomeSidebar/HomeSidebar';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -82,11 +84,12 @@ function App({ }) {
           <Shadow><View style={{ position: 'absolute', height: 51 }}></View></Shadow>
 
           <MainMenu.Navigator backBehavior={'none'} tabBar={props => <TabBar {...props} />}>
-            <MainMenu.Screen name="Main" component={HomePage} options={{ animationEnabled: false, swipeEnabled: false, }} />
-            <MainMenu.Screen name="Screen2" component={ScreenCompendium} options={{ animationEnabled: false, swipeEnabled: false }} />
-            <MainMenu.Screen name="Screen3" component={ScreenDS} options={{ animationEnabled: false, swipeEnabled: false }} />
-            <MainMenu.Screen name="Screen4" component={ScreenCommunity} options={{ animationEnabled: false, swipeEnabled: false }} />
-            <MainMenu.Screen name="Screen5" component={ScreenSettings} options={{ animationEnabled: false, swipeEnabled: false }} />
+            <MainMenu.Screen name="sidebar" component={LargeSidebar} options={{ animationEnabled: false, swipeEnabled: true, }} />
+            <MainMenu.Screen name="Main" component={HomePage} options={{ animationEnabled: false, swipeEnabled: true, }} />
+            <MainMenu.Screen name="Screen2" component={ScreenCompendium} options={{ animationEnabled: false, swipeEnabled: true }} />
+            <MainMenu.Screen name="Screen3" component={ScreenDS} options={{ animationEnabled: false, swipeEnabled: true }} />
+            <MainMenu.Screen name="Screen4" component={ScreenCommunity} options={{ animationEnabled: false, swipeEnabled: true }} />
+            <MainMenu.Screen name="Screen5" component={ScreenSettings} options={{ animationEnabled: false, swipeEnabled: true }} />
           </MainMenu.Navigator>
         </NavigationContainer>
       </View>

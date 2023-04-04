@@ -29,7 +29,8 @@ const HomePage = ({ navigation }) => {
                 headerShown: false,
                 gestureEnabled: false
             }}
-            drawerContent={props => <HomeSidebar {...props} />}>
+        // drawerContent={props => <HomeSidebar {...props} />}
+        >
             <Drawer.Screen name="DreamList" component={DreamList} />
             <Drawer.Screen name="AddDreamMenu" component={AddDreamMenu} />
             <Drawer.Screen name="Article" component={DreamList} />

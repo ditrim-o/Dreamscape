@@ -11,15 +11,15 @@ const TabBarBtn = ({ isFocused, index }) => {
     let opacity = index == 3 ? 0.5 : 1;
     const renderImg = () => {
         switch (index) {
-            case 0:
-                return <MMButton1 />
             case 1:
-                return <MMButton2 />
+                return <MMButton1 />
             case 2:
-                return <MMButton3 />
+                return <MMButton2 />
             case 3:
-                return <MMButton4 />
+                return <MMButton3 />
             case 4:
+                return <MMButton4 />
+            case 5:
                 return <MMButton5 />
         }
     }
